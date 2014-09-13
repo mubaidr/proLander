@@ -84,6 +84,7 @@ body {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+    text-shadow: 2px 2px 5px #999;
 }
 
 .canvas {
@@ -127,11 +128,11 @@ body {
 
 .howto {
     display:block;
-    background-color:#999;
+    background-color:#eee;
     z-index:4003;
     height:500px;
-    
 }
+
 #controls {
     display:block;
     width:100%;
@@ -150,6 +151,8 @@ body {
     display:block;
     text-align:left;
     float:left;
+    background-color: gray;
+    height:inherit;
 }
 
 .controls #player2 {
@@ -231,6 +234,7 @@ body {
     display:block;
     padding-top:10px;
     width:90%;
+    padding-left:0px;
 }
     
 .menu li {
@@ -253,6 +257,10 @@ body {
     color:red;
     font-weight: 900;
     text-shadow: 0 0 30px #FFF, 0 0 30px #FFF;
+}
+    
+#play:after {
+    padding: 10px 0;
 }
     
 .canvas {
