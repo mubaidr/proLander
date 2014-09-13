@@ -232,9 +232,8 @@ body {
 
 .menu ul{
     display:block;
-    padding-top:10px;
+    padding:10px 0;
     width:90%;
-    padding-left:0px;
 }
     
 .menu li {
@@ -250,6 +249,10 @@ body {
     text-decoration: none;
     color:white;
 }
+
+#play {
+    height:80px;
+}
     
 #play p {
     padding: 0 10px;
@@ -259,12 +262,8 @@ body {
     text-shadow: 0 0 30px #FFF, 0 0 30px #FFF;
 }
     
-#play:after {
-    padding: 10px 0;
-}
-    
 .canvas {
-    height:80px;
+    height:100%;
     padding-top:30px;
     background-image: none;
 }
