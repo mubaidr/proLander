@@ -7,8 +7,8 @@
     <meta name=viewport content="width=device-width, initial-scale=1.0">
     <title>WEB VERSION OF CHOPDUEL</title>
     <meta name="description" content="A fun multiplayer game.">
-    <link rel="stylesheet" href="main.css" type="text/css">
-    <link rel="stylesheet" href="loader.css" type="text/css">
+    <link rel="stylesheet" href="main.min.css" type="text/css">
+    <script src="processing.min.js"></script>
 </head>
 
 <body>
@@ -28,18 +28,27 @@
 
     <section class="canvas">
         <span id="cannotPlay"><p>MINIMUM RESOLUTION REQUIRED TO PLAY THIS GAME IS 800x600</p></span>
-        <div class="frame" id="play">
-            <p>This is the canvas for the game</p>
-        </div>
+        <canvas class="frame" id="play" data-processing-sources="Plander.pde"></canvas>
     </section>
 
     <section id="controls">
         <div class="controls">
             <div id="player1">
-                <p>WASD Lorum Ipsum</p>
+                <p><b>Rules</b>
+                </p>
+                <p>Land the craft safely on the ground</p>
+                <p>The landing valocity should be less than 0.5</p>
+                <p>Land the craft on the plane surface</p>
+                <p>Gravity constantly acts on the craft so keep presing throttle</p>
+                <p>Holding the throttle for too long will result in uncontrollable accelleration</p>
             </div>
             <div id="player2">
-                <p>UDLR Lorum Ipsum</p>
+                <p><b>Keys</b>
+                </p>
+                <p>Throttle: 'H'</p>
+                <p>Left: 'K'</p>
+                <p>Right: 'L'</p>
+                <p>Restart: 'R'</p>
             </div>
         </div>
     </section>
@@ -53,7 +62,8 @@
             </div>
             <div>
                 <div>References</div>
-                <div><a href="http://processing.org" target="_blank">Processing</a></div>
+                <div><a href="http://processing.org" target="_blank">Processing</a>
+                </div>
                 <div>HTML5</div>
                 <div>CSS3</div>
             </div>
