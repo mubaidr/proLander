@@ -82,7 +82,6 @@ body {
 .canvas {
     height: 100%;
     padding: 100px 0;
-    background-color: gray;
     display: block;
 }
 #cannotPlay {
@@ -93,7 +92,6 @@ body {
     width: 800px;
     height: 600px;
     display: block;
-    background-color: white;
     border: solid 10px white;
     -webkit-box-shadow: 0 0 20px 10px #999 inset;
     -moz-box-shadow: 0 0 20px 10px #999 inset;
