@@ -89,13 +89,12 @@ body {
 }
 .frame {
     margin: 0px auto;
-    width: 800px;
-    height: 600px;
     display: block;
     border: solid 10px white;
     -webkit-box-shadow: 0 0 20px 10px #999 inset;
     -moz-box-shadow: 0 0 20px 10px #999 inset;
     box-shadow: 0 0 20px 10px #999 inset;
+    z-index: 1001;
 }
 .frame p {
     margin-top: 100px;
@@ -114,6 +113,7 @@ body {
     height: 300px;
 }
 .controls #player1 {
+    overflow: auto;
     width: 50%;
     text-align: left;
     float: left;
