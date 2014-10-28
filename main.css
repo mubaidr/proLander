@@ -10,6 +10,7 @@ ul {
     display: block;
     vertical-align: baseline;
     margin: 0;
+    outline: none;
 }
 a {
     font-style: none;
@@ -83,6 +84,7 @@ body {
     height: 100%;
     padding: 100px 0;
     display: block;
+    background-color: #80ad72;
 }
 #cannotPlay {
     display: none;
@@ -91,9 +93,9 @@ body {
     margin: 0px auto;
     display: block;
     border: solid 10px white;
-    -webkit-box-shadow: 0 0 20px 10px #999 inset;
-    -moz-box-shadow: 0 0 20px 10px #999 inset;
-    box-shadow: 0 0 20px 10px #999 inset;
+    -webkit-box-shadow: 0 0 10px 1px #333;
+    -moz-box-shadow: 0 0 10px 1px #333;
+    box-shadow: 0 0 10px 1px #333;
     z-index: 1001;
 }
 .frame p {
