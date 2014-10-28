@@ -5,9 +5,10 @@ void setup() {
     noStroke();
     smooth();
     noLoop();
+    textSize(14);
 }
 
-boolean toggleLoop = false;
+boolean toggleLoop;
 
 float ground = 517;
 float fuel = 100;
@@ -52,20 +53,20 @@ void draw() {
     rect(0, 580, 800, 20);
     shape(lander, craft_X, craft_Y, 80, 80);
     
-    text(p, 350, 50);
+    text(p, 345, 50);
     
     text("Velocity:", 10, 20);
     String vv = nf(speed_Y, 1, 2);
     text(vv, 80, 20);
 
-    text("Destance:", 10, 35);
+    text("Destance:", 10, 38);
     float dd = ground - craft_Y;
     String ddd = nf(dd, 1, -1);
-    text(ddd, 80, 35);
+    text(ddd, 80, 38);
 
-    text("Fuel:", 10, 50);
+    text("Fuel:", 10, 56);
     String ff = nf(fuel, 1, -1);
-    text(ff, 80, 50);
+    text(ff, 80, 56);
 
     if (craft_Y < ground) {
         thrust_Y = 0.105;
@@ -74,7 +75,7 @@ void draw() {
     }
 
     if (fuel <= 0) {
-        text("Ran out of fuel!!", 350, 130);
+        text("Ran out of fuel!!", 340, 130);
         thrust_Y = 0;
         if (craft_Y < ground) {
             speed_Y = speed_Y + gravity;
@@ -91,7 +92,7 @@ void draw() {
     if (craft_Y >= ground) {
         speed_X = 0;
         if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
-            text("safe landing", 350, 100);
+            text("safe landing", 345, 100);
         } else {
             text("crash!!!", 350, 100);
         }

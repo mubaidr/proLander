@@ -134,7 +134,7 @@ body {
     border-bottom-right-radius: 20px;
 }
 .controls p {
-    padding-left: 50px;
+    padding: 0 10px 0 50px;
 }
 #credits {
     height: 100%;
