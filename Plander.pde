@@ -1,7 +1,7 @@
 void setup()
 {
   size(800, 600);
-  lander = loadShape("data/lander.svg");
+  lander = loadShape("images/lander.svg");
 
 }
 
@@ -112,7 +112,7 @@ void draw()
      {
      text("crash!!!", 350, 100);
      }
-     speed_Y = 0;
+     throttle_Y = 0;
  }
 
 }
@@ -123,21 +123,21 @@ void keyPressed()
   {
   speed_Y = speed_Y - thrust_Y;
   fuel = fuel -0.75;
-  lander = loadShape("data/lander_down.svg");
+  lander = loadShape("images/lander_down.svg");
   }
 
   if (key == 'k' && fuel > 0 && craft_Y < ground)
   {
   speed_X = speed_X + thrust_X;
   fuel = fuel - 0.1;
-  lander = loadShape("data/lander_left.svg");
+  lander = loadShape("images/lander_left.svg");
   }
 
   if (key == 'l' && fuel > 0 && craft_Y < ground)
   {
   speed_X = speed_X - thrust_X;
   fuel = fuel - 0.1;
-  lander = loadShape("data/lander_right.svg");
+  lander = loadShape("images/lander_right.svg");
   }
 
   if (key == 'r')
@@ -154,5 +154,5 @@ void keyPressed()
 
 void keyReleased()
 {
-  lander = loadShape("data/lander.svg");
+  lander = loadShape("images/lander.svg");
 }
