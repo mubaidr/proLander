@@ -36,13 +36,13 @@ body {
     margin: 0 auto;
     text-align: center;
     display: block;
-    height: 100vh;
+    height: 100px;
     width: 100%;
     position: fixed;
 }
 .menu ul {
-    height: 20vh;
-    padding: 40vh 0;
+    height: 100px;
+    padding: auto 0;
     margin: 0 auto;
     display: block;
 }
@@ -84,7 +84,7 @@ body {
 }
 .canvas {
     height: 100%;
-    padding: 100px 0;
+    padding: 50px 0;
     display: block;
 }
 #cannotPlay {
@@ -179,6 +179,7 @@ body {
 @media (min-width: 150px) and (max-width: 800px) {
     .menu {
         height: 100%;
+        position: static;
     }
     #logo {
         margin: 0 auto;
