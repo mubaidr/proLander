@@ -26,6 +26,11 @@ body {
     margin: 0;
     text-align: center;
     overflow-x: hidden;
+    background-image: url(images/1.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .menu {
     margin: 0 auto;
@@ -33,11 +38,7 @@ body {
     display: block;
     height: 100vh;
     width: 100%;
-    background-color: #79c9fa;
-    background-image: url(images/1.jpg);
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
+    position: fixed;
 }
 .menu ul {
     height: 20vh;
@@ -59,11 +60,12 @@ body {
     display: block;
     border-radius: 10px;
     text-decoration: none;
-    color: #555;
+    color: lightgray;
     font-weight: 900;
 }
 .menu li a:hover {
-    background-color: lightblue;
+    background-color: lightgray;
+    color: gray;
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     transition-duration: 0.5s;
@@ -71,7 +73,7 @@ body {
 #logo {
     font-size: 20px;
     width: 100px;
-    background-color: pink;
+    background-color: lightgray;
     padding: 20px;
     margin-right: 0px;
     margin-left: 0px;
@@ -84,7 +86,6 @@ body {
     height: 100%;
     padding: 100px 0;
     display: block;
-    background-color: #80ad72;
 }
 #cannotPlay {
     display: none;
@@ -103,7 +104,6 @@ body {
     color: #aaa;
 }
 #controls {
-    background-color: #eee;
     height: 100%;
     padding: 100px 0;
 }

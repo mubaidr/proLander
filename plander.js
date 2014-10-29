@@ -1,12 +1,8 @@
-void setup() {
-    size(800, 600);
-    lander = loadShape("images/lander.svg");
-    noCursor();
-    noStroke();
-    smooth();
-    noLoop();
-    textSize(14);
-}
+/* @pjs preload="images/2.jpg"; */ 
+/* @pjs preload="images/lander.svg"; */ 
+/* @pjs preload="images/lander_down.svg"; */ 
+/* @pjs preload="images/lander_left.svg"; */ 
+/* @pjs preload="images/lander_right.svg"; */ 
 
 boolean toggleLoop;
 
@@ -24,6 +20,8 @@ float thrust_Y = 0.105;
 float gravity = 0.01;
 
 PShape lander;
+PImage bg;
+
 String p = "Click to Play";
 
 float r = random(100, 600);
@@ -38,9 +36,25 @@ float t4 = random(540, 575);
 float t5 = random(540, 575);
 float t6 = random(540, 575);
 
-void draw() {
-    background(0, 0, 0);
+void setup() {
+    size(800, 600);
+    lander = loadShape("images/lander.svg");
+    bg = loadImage("images/2.jpg");
+    noCursor();
+    noStroke();
+    smooth();
+    noLoop();
+    textSize(14);
+}
 
+void terrain() {
+
+}
+
+void draw() {
+    background(bg);
+    
+    fill(105, 55, 5);
     triangle(0, 580, pre, t1, 2 * pre, 580);
     triangle(2 * pre, 580, 3 * pre, t2, 4 * pre, 580);
     triangle(4 * pre, 580, 5 * pre, t3, r, 580);
@@ -51,9 +65,12 @@ void draw() {
 
     rect(r, 580, 100, 20);
     rect(0, 580, 800, 20);
+    
     shape(lander, craft_X, craft_Y, 80, 80);
     
-    text(p, 345, 50);
+    fill(255, 255, 255);
+    
+    text(p, 680, 25);
     
     text("Velocity:", 10, 20);
     String vv = nf(speed_Y, 1, 2);
@@ -75,7 +92,9 @@ void draw() {
     }
 
     if (fuel <= 0) {
+        textSize(20);
         text("Ran out of fuel!!", 340, 130);
+        textSize(12);
         thrust_Y = 0;
         if (craft_Y < ground) {
             speed_Y = speed_Y + gravity;
@@ -92,9 +111,13 @@ void draw() {
     if (craft_Y >= ground) {
         speed_X = 0;
         if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
-            text("safe landing", 345, 100);
+            textSize(20);
+            text("Safe Landing", 345, 100);
+            textSize(12);
         } else {
-            text("crash!!!", 350, 100);
+            textSize(20);
+            text("Crash!!!", 350, 100);
+            textSize(12);
         }
     }
 }
@@ -152,12 +175,12 @@ void mousePressed() {
         if (toggleLoop) {
             noLoop();
             p = "Paused";
-            text(p, 350, 50);
+            text(p, 700, 25);
             toggleLoop = false;
         } else {
             loop();
             p = " ";
-            text(p, 350, 50);
+            text(p, 800, 600);
             toggleLoop = true;
         }
     }
