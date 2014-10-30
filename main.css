@@ -62,16 +62,12 @@ body {
 }
 footer {
     padding-bottom: 10px;
+    font-size: 12px;
+    color: lightgray;
 }
 /* --------------- media queries start here ---------- */
 
 @media (min-width: 150px) and (max-width: 800px) {
-    body {
-        overflow-y: scroll;
-    }
-    #logo {
-        margin: 0 auto;
-    }
     #cannotPlay {
         height: 100%;
         padding: 0 10px;
@@ -79,11 +75,6 @@ footer {
         color: red;
         font-weight: 900;
         text-shadow: 0 0 30px #FFF, 0 0 30px #FFF;
-    }
-    .canvas {
-        height: 100%;
-        padding: 30px 0;
-        background-image: none;
     }
     .frame {
         display: none;
