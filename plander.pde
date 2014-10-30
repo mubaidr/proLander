@@ -4,16 +4,8 @@
 /* @pjs preload="images/lander_left.svg"; */
 /* @pjs preload="images/lander_right.svg"; */
 
-interface JavaScript {
-    void clap();
-    void fail();
-}
-
-void bindJavascript(Javascript js) {
-    javascript = js;
-}
-
-JavaScript javascript;
+Audio clap = new Audio("sounds/clap.ogg");
+Audio fail = new Audio("sounds/fail.ogg");
 
 boolean toggleLoop;
 
@@ -108,21 +100,17 @@ void draw() {
         speed_X = speed_X;
     } else {
         if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
-            noLoop();
-            if (javascript != null) {
-                javascript.clap();
-            }
+            clap.play();
             textSize(20);
             text("Safe Landing", 345, 100);
             textSize(12);
-        } else {
             noLoop();
-            if (javascript != null) {
-                javascript.fail();
-            }
+        } else {
+            fail.play();
             textSize(20);
             text("Crash!!!", 365, 100);
             textSize(12);
+            noLoop();
         }
     }
 
