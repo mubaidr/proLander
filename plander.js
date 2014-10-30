@@ -4,12 +4,23 @@
 /* @pjs preload="images/lander_left.svg"; */ 
 /* @pjs preload="images/lander_right.svg"; */ 
 
+interface JavaScript {
+    void playSound0();
+    void playSound1();
+}
+
+void bindJavascript(Javascript js) {
+    javascript = js;
+}
+
+JavaScript javascript;
+
 boolean toggleLoop;
 
 float ground = 517;
 float fuel = 100;
-float craft_X = 400;
-float craft_Y = 0;
+float craft_X = 360;
+float craft_Y = 5;
 
 float speed_X = 0;
 float speed_Y = 0;
@@ -22,9 +33,10 @@ float gravity = 0.01;
 PShape lander;
 PImage bg;
 
-String p = "Click to Play";
+String c = "Click to play";
+String p;
 
-float r = random(100, 600);
+float r = random(0, 700);
 
 float pre = r / 6;
 float post = (800 - (r + 100)) / 6;
@@ -47,14 +59,10 @@ void setup() {
     textSize(14);
 }
 
-void terrain() {
-
-}
-
 void draw() {
     background(bg);
     
-    fill(105, 55, 5);
+    fill(175, 105, 25);
     triangle(0, 580, pre, t1, 2 * pre, 580);
     triangle(2 * pre, 580, 3 * pre, t2, 4 * pre, 580);
     triangle(4 * pre, 580, 5 * pre, t3, r, 580);
@@ -70,7 +78,14 @@ void draw() {
     
     fill(255, 255, 255);
     
-    text(p, 680, 25);
+    text(c, 360, 200);
+    text(p, 375, 200);
+    
+    text("\"H\" throttle", 720, 20);
+    text("\"K\" left", 720, 38);
+    text("\"L\" right", 720, 56);
+    text("\"R\" restart", 720, 74);
+    
     
     text("Velocity:", 10, 20);
     String vv = nf(speed_Y, 1, 2);
@@ -89,6 +104,8 @@ void draw() {
         thrust_Y = 0.105;
         craft_Y += speed_Y;
         speed_Y = speed_Y + gravity;
+        craft_X += speed_X;
+        speed_X = speed_X;
     }
 
     if (fuel <= 0) {
@@ -103,20 +120,22 @@ void draw() {
         }
     }
 
-    if (craft_X > 0 && craft_X < 800) {
-        craft_X += speed_X;
-        speed_X = speed_X;
-    }
-
     if (craft_Y >= ground) {
-        speed_X = 0;
         if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
+            if(javascript != null) {
+                javascript.playSound0();
+            }
+            noLoop();
             textSize(20);
             text("Safe Landing", 345, 100);
             textSize(12);
         } else {
+            if(javascript != null) {
+                javascript.playSound1();
+            }
+            noLoop();
             textSize(20);
-            text("Crash!!!", 350, 100);
+            text("Crash!!!", 365, 100);
             textSize(12);
         }
     }
@@ -142,13 +161,15 @@ void keyPressed() {
     }
 
     if (key == 'r') {
-        randomize();
-        redraw();
         fuel = 100;
-        craft_X = 400;
-        craft_Y = 0;
+        craft_X = 360;
+        craft_Y = 5;
         speed_X = 0;
         speed_Y = 0;
+        randomize();
+        redraw();
+        toggleLoop = false;
+        mousePressed();
     }
 }
 
@@ -157,7 +178,7 @@ void keyReleased() {
 }
 
 void randomize() {
-    r = random(100, 600);
+    r = random(0, 700);
 
     pre = r / 6;
     post = (800 - (r + 100)) / 6;
@@ -175,12 +196,12 @@ void mousePressed() {
         if (toggleLoop) {
             noLoop();
             p = "Paused";
-            text(p, 700, 25);
+            text(p, 375, 200);
             toggleLoop = false;
         } else {
             loop();
+            c = " "
             p = " ";
-            text(p, 800, 600);
             toggleLoop = true;
         }
     }

@@ -8,62 +8,48 @@
     <title>WEB VERSION OF LANDER</title>
     <meta name="description" content="A fun multiplayer game.">
     <link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="main.min.css" type="text/css">
-    <script src="scripts/processing.min.js"></script>
-    <script src="scripts/jquery.min.js"></script>
-    <script src="plander.js" type="text/processing" data-processing-target="play"></script>
+    <link href="main.min.css" type="text/css" rel="stylesheet">
+    <script src="scripts/processing.min.js" type="text/javascript"></script>
+    <script src="scripts/buzz.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var clap = new buzz.sound("sounds/clap", {
+            formats: ["mp3"]
+        });
+        var fail = new buzz.sound("sounds/fail", {
+            formats: ["mp3"]
+        });
+
+        var bound = false;
+
+        function bindJavascript() {
+            var pjs = Processing.getInstanceById("play");
+            if (pjs != null) {
+                pjs.bindJavascript(this);
+                bound = true;
+            }
+            if (!bound) setTimeout(bindJavascript, 250);
+        }
+        bindJavascript();
+
+        function playSound0() {
+            clap.play();
+        }
+
+        function playSound1() {
+            fail.play();
+        }
+    </script>
 </head>
 <div id="logo">LANDER</div>
 
 <body>
     <section class="canvas">
         <span id="cannotPlay"><p>MINIMUM RESOLUTION REQUIRED TO PLAY THIS GAME IS 800x600</p></span>
-        <canvas class="frame" id="play"></canvas>
-    </section>
-    <section id="controls">
-        <div class="controls">
-            <div id="player1">
-                <p><b>Rules</b>
-                </p>
-                <p>Land the craft safely on the ground</p>
-                <p>The landing valocity should be less than 0.5</p>
-                <p>Land the craft on the plane surface</p>
-                <p>Gravity constantly acts on the craft so keep presing throttle</p>
-                <p>Holding the throttle for too long will result in uncontrollable accelleration</p>
-                <p>Keep an eye on the fuel</p>
-            </div>
-            <div id="player2">
-                <p><b>Keys</b>
-                </p>
-                <p>Throttle: 'H'</p>
-                <p>Left: 'K'</p>
-                <p>Right: 'L'</p>
-                <p>Restart: 'R'</p>
-            </div>
-        </div>
+        <canvas class="frame" id="play" data-processing-sources="plander.js"></canvas>
     </section>
 
-    <footer id="credits">
-        <div class="credits">
-            <div>
-                <div>Mabe By</div>
-                <div>Salem &#44; Usman &amp; Jason</div>
-                <div>So &copy; copyright yeah!</div>
-            </div>
-            <div>
-                <div>References</div>
-                <div><a href="http://processing.org" target="_blank">Processing</a>
-                </div>
-                <div>HTML5</div>
-                <div>CSS3</div>
-            </div>
-            <div>
-                <div>Sitemap</div>
-                <div>Play</div>
-                <div>Controls</div>
-                <div>Credits</div>
-            </div>
-        </div>
+    <footer>
+        <div>&copy; Copyright by Salem &#44; Usman &amp; Jason</div>
     </footer>
 </body>
 
