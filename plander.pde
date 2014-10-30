@@ -46,9 +46,10 @@ void setup() {
     bg = loadImage("images/2.jpg");
     noCursor();
     noStroke();
-    smooth();
     noLoop();
     textSize(14);
+    frameRate(60);
+    noSmooth();
 }
 
 void draw() {
@@ -73,11 +74,10 @@ void draw() {
     text(c, 360, 200);
     text(p, 375, 200);
 
-    text("\"H\" throttle", 720, 20);
-    text("\"K\" left", 720, 38);
-    text("\"L\" right", 720, 56);
-    text("\"R\" restart", 720, 74);
-
+    text("\'H\' throttle", 720, 20);
+    text("\'K\' left", 720, 38);
+    text("\'L\' right", 720, 56);
+    text("\'R\' restart", 720, 74);
 
     text("Velocity:", 10, 20);
     String vv = nf(speed_Y, 1, 2);
@@ -99,7 +99,7 @@ void draw() {
         craft_X += speed_X;
         speed_X = speed_X;
     } else {
-        if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
+        if (speed_Y <= 0.5 && craft_X >= (r - 10) && craft_X <= (r + 30)) {
             clap.play();
             textSize(20);
             text("Safe Landing", 345, 100);
