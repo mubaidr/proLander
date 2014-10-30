@@ -11,41 +11,14 @@
     <link href="main.min.css" type="text/css" rel="stylesheet">
     <script src="scripts/processing.min.js" type="text/javascript"></script>
     <script src="scripts/buzz.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var clap = new buzz.sound("sounds/clap", {
-            formats: ["mp3"]
-        });
-        var fail = new buzz.sound("sounds/fail", {
-            formats: ["mp3"]
-        });
-
-        var bound = false;
-
-        function bindJavascript() {
-            var pjs = Processing.getInstanceById("play");
-            if (pjs != null) {
-                pjs.bindJavascript(this);
-                bound = true;
-            }
-            if (!bound) setTimeout(bindJavascript, 250);
-        }
-        bindJavascript();
-
-        function playSound0() {
-            clap.play();
-        }
-
-        function playSound1() {
-            fail.play();
-        }
-    </script>
+    <script src="main.min.js" type="text/javascript"></script>
 </head>
 <div id="logo">LANDER</div>
 
 <body>
     <section class="canvas">
         <span id="cannotPlay"><p>MINIMUM RESOLUTION REQUIRED TO PLAY THIS GAME IS 800x600</p></span>
-        <canvas class="frame" id="play" data-processing-sources="plander.js"></canvas>
+        <canvas class="frame" id="play" data-processing-sources="plander.pde"></canvas>
     </section>
 
     <footer>

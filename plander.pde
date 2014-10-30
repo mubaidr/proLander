@@ -1,12 +1,12 @@
-/* @pjs preload="images/2.jpg"; */ 
-/* @pjs preload="images/lander.svg"; */ 
-/* @pjs preload="images/lander_down.svg"; */ 
-/* @pjs preload="images/lander_left.svg"; */ 
-/* @pjs preload="images/lander_right.svg"; */ 
+/* @pjs preload="images/2.jpg"; */
+/* @pjs preload="images/lander.svg"; */
+/* @pjs preload="images/lander_down.svg"; */
+/* @pjs preload="images/lander_left.svg"; */
+/* @pjs preload="images/lander_right.svg"; */
 
 interface JavaScript {
-    void playSound0();
-    void playSound1();
+    void clap();
+    void fail();
 }
 
 void bindJavascript(Javascript js) {
@@ -61,7 +61,7 @@ void setup() {
 
 void draw() {
     background(bg);
-    
+
     fill(175, 105, 25);
     triangle(0, 580, pre, t1, 2 * pre, 580);
     triangle(2 * pre, 580, 3 * pre, t2, 4 * pre, 580);
@@ -73,20 +73,20 @@ void draw() {
 
     rect(r, 580, 100, 20);
     rect(0, 580, 800, 20);
-    
+
     shape(lander, craft_X, craft_Y, 80, 80);
-    
+
     fill(255, 255, 255);
-    
+
     text(c, 360, 200);
     text(p, 375, 200);
-    
+
     text("\"H\" throttle", 720, 20);
     text("\"K\" left", 720, 38);
     text("\"L\" right", 720, 56);
     text("\"R\" restart", 720, 74);
-    
-    
+
+
     text("Velocity:", 10, 20);
     String vv = nf(speed_Y, 1, 2);
     text(vv, 80, 20);
@@ -100,12 +100,30 @@ void draw() {
     String ff = nf(fuel, 1, -1);
     text(ff, 80, 56);
 
-    if (craft_Y < ground) {
+    if (craft_Y <= ground) {
         thrust_Y = 0.105;
         craft_Y += speed_Y;
         speed_Y = speed_Y + gravity;
         craft_X += speed_X;
         speed_X = speed_X;
+    } else {
+        if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
+            noLoop();
+            if (javascript != null) {
+                javascript.clap();
+            }
+            textSize(20);
+            text("Safe Landing", 345, 100);
+            textSize(12);
+        } else {
+            noLoop();
+            if (javascript != null) {
+                javascript.fail();
+            }
+            textSize(20);
+            text("Crash!!!", 365, 100);
+            textSize(12);
+        }
     }
 
     if (fuel <= 0) {
@@ -117,26 +135,6 @@ void draw() {
             speed_Y = speed_Y + gravity;
         } else {
             speed_Y = speed_Y;
-        }
-    }
-
-    if (craft_Y >= ground) {
-        if (speed_Y <= 0.5 && craft_X >= (r - 20) && craft_X <= (r + 120)) {
-            if(javascript != null) {
-                javascript.playSound0();
-            }
-            noLoop();
-            textSize(20);
-            text("Safe Landing", 345, 100);
-            textSize(12);
-        } else {
-            if(javascript != null) {
-                javascript.playSound1();
-            }
-            noLoop();
-            textSize(20);
-            text("Crash!!!", 365, 100);
-            textSize(12);
         }
     }
 }
