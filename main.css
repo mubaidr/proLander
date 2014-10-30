@@ -56,10 +56,6 @@ body {
     -moz-box-shadow: 0 0 10px 1px #333;
     box-shadow: 0 0 10px 1px #333;
 }
-.frame p {
-    margin-top: 100px;
-    color: #aaa;
-}
 footer {
     padding-bottom: 10px;
     font-size: 12px;
