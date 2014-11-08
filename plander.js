@@ -7,18 +7,18 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'play', {
 
 function preload() {
     game.load.image("background", "images/2.jpg");
-    game.load.image("pad", "images/pad.png");
     game.load.spritesheet("lander0", "images/lander.png", 80, 79, 4);
 }
 
 function create() {
-    position = game.rnd.integerInRange(0, 700);
     background = game.add.tileSprite(0, 0, 800, 600, "background");
-    pad = game.add.sprite(position, 580, "pad");
     craft = game.add.sprite(350, 0, "lander0", 0);
+    game.world.bounds.setTo(-10, 0, 820, 610);
+    game.physics.setBoundsToWorld();
     game.physics.startSystem(craft, Phaser.Physics.ARCADE);
     game.physics.arcade.enable(craft);
     game.physics.arcade.gravity.y = 18;
+    craft.body.collideWorldBounds = true;
     velocity = game.add.text(20, 20, "", {
         font: "12px Arial",
         fill: "#ffffff",
@@ -63,7 +63,7 @@ function update() {
     } else if (craft.body.position.y >= 531 && tank > 0) {
         craft.body.velocity.x = 0;
         craft.frame = 0;
-        if (craft.body.position.x >= (position - 10) && craft.body.position.x <= (position + 30) && craft.body.velocity.y < 20) {
+        if (craft.body.position.x >= 0 && craft.body.position.x <= 600 && craft.body.velocity.y < 20) {
             landed.setText("Safe Landing");
         } else
             landed.setText("Crashed");
