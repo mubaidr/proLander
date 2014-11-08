@@ -11,9 +11,11 @@ function preload() {
 }
 
 function create() {
+    ground = 614;
+    tank = 100;
     background = game.add.tileSprite(0, 0, 800, 600, "background");
     craft = game.add.sprite(350, 0, "lander0", 0);
-    game.world.bounds.setTo(-10, 0, 820, 610);
+    game.world.bounds.setTo(-10, 0, 820, ground);
     game.physics.setBoundsToWorld();
     game.physics.startSystem(craft, Phaser.Physics.ARCADE);
     game.physics.arcade.enable(craft);
@@ -31,15 +33,32 @@ function create() {
         font: "12px Arial",
         fill: "#ffffff",
     });
-    landed = game.add.text(300, 40, "", {
-        font: "24px Arial",
+    keyH = game.add.text(734, 20, "Down: H", {
+        font: "12px Arial",
         fill: "#ffffff",
     });
-    tank = 100;
+    keyK = game.add.text(745, 35, "Left: K", {
+        font: "12px Arial",
+        fill: "#ffffff",
+    });
+    keyL = game.add.text(738, 50, "Right: L", {
+        font: "12px Arial",
+        fill: "#ffffff",
+    });
+    keyR = game.add.text(727, 65, "Restart: R", {
+        font: "12px Arial",
+        fill: "#ffffff",
+    });
+    landed = game.add.text(336, 70, "", {
+        font: "24px Arial",
+        fill: "#ffffff",
+        align: "center",
+    });
 }
 
 function update() {
-    if (craft.body.position.y < 531 && tank > 0) {
+    if (!craft.body.onFloor() && tank > 0) {
+        speed = craft.body.velocity.y;
         if (game.input.keyboard.isDown(Phaser.Keyboard.H)) {
             craft.body.acceleration.y -= 1;
             craft.frame = 1;
@@ -57,21 +76,23 @@ function update() {
             craft.body.acceleration.x = 0;
             craft.frame = 0;
         }
-    } else if (craft.body.position.y < 531 && tank <= 0) {
+    } else if (!craft.body.onFloor() && tank <= 0) {
         craft.body.acceleration.y = 18;
         craft.frame = 0;
-    } else if (craft.body.position.y >= 531 && tank > 0) {
+    } else if (craft.body.onFloor() && tank > 0) {
+        speed = speed;
         craft.body.velocity.x = 0;
         craft.frame = 0;
-        if (craft.body.position.x >= 0 && craft.body.position.x <= 600 && craft.body.velocity.y < 20) {
+        if (craft.body.position.x >= 0 && craft.body.position.x <= 600 && speed < 20) {
             landed.setText("Safe Landing");
-        } else
-            landed.setText("Crashed");
+        } else {
+            landed.setText("  Crashed   ");
+        }
     }
 }
 
 function render() {
-    velocity.setText("Velocity: " + craft.body.velocity.y.toFixed(2));
-    distance.setText("Distance: " + (531 - craft.body.position.y.toFixed(0)));
+    velocity.setText("Velocity: " + speed.toFixed(2));
+    distance.setText("Distance: " + ((ground - 79) - craft.body.position.y.toFixed(0)));
     fuel.setText("Fuel: " + tank.toFixed(0));
 }
