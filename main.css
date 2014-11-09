@@ -50,7 +50,7 @@ body {
 }
 .frame {
     margin: 0px auto 20px auto;
-    display: block;
+    display: table;
     border: solid 10px white;
     -webkit-box-shadow: 0 0 10px 1px #333;
     -moz-box-shadow: 0 0 10px 1px #333;
