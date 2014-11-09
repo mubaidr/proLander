@@ -1,4 +1,7 @@
-OK so this is the __Phaser.io__ port of the _proLander_.. 
+OK so this is the __Phaser.io__ port of the _proLander_.
 
-started porting on Friday November 7, 14:00
- 
+Friday November 7, 14:00 :: started porting 
+
+Monday November 7, 07:15 :: completed the port
+
+will add reward system after a small break.. 
