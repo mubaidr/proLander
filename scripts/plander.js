@@ -28,37 +28,38 @@ function create() {
     game.physics.arcade.gravity.y = 18;
     craft.body.collideWorldBounds = true;
     velocity = game.add.text(20, 20, "", {
-        font: "12px Arial",
+        font: "12px Courier",
         fill: "#ffffff"
     });
     distance = game.add.text(20, 35, "", {
-        font: "12px Arial",
+        font: "12px Courier",
         fill: "#ffffff"
     });
     fuel = game.add.text(20, 50, "", {
-        font: "12px Arial",
+        font: "12px Courier",
         fill: "#ffffff"
     });
     keyH = game.add.text(734, 20, "Down: H", {
-        font: "12px Arial",
+        font: "12px Courier",
         fill: "#ffffff"
     });
-    keyK = game.add.text(745, 35, "Left: K", {
-        font: "12px Arial",
+    keyK = game.add.text(734, 35, "Left: K", {
+        font: "12px Courier",
         fill: "#ffffff"
     });
-    keyL = game.add.text(738, 50, "Right: L", {
-        font: "12px Arial",
+    keyL = game.add.text(727, 50, "Right: L", {
+        font: "12px Courier",
         fill: "#ffffff"
     });
-    keyR = game.add.text(727, 65, "Restart: R", {
-        font: "12px Arial",
+    keyR = game.add.text(713, 65, "Restart: R", {
+        font: "12px Courier",
         fill: "#ffffff"
     });
-    landed = game.add.text(336, 70, "", {
-        font: "24px Arial",
+    landed = game.add.text(325, 100, "", {
+        font: "24px Courier",
         fill: "#ffffff",
-        align: "center"
+        align: "center",
+        fontWeight: "bold"
     });
 }
 
