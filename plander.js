@@ -90,7 +90,7 @@ function update() {
     } else if (craft.body.onFloor() && (tank > 0 || tank <= 0)) {
         craft.frame = 0;
         craft.body.moves = false;
-        if (craft.body.position.x >= (r - 10) && craft.body.position.x <= (r + 30) && craft.body.velocity.y < 20) {
+        if (craft.body.position.x >= (r - 10) && craft.body.position.x <= (r + 30) && craft.body.speed < 20) {
             win.play();
             landed.setText("Safe Landing");
         } else {
