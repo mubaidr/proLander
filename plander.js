@@ -102,6 +102,9 @@ function update() {
 
 function render() {
     velocity.setText("Velocity: " + craft.body.speed.toFixed(2));
-    distance.setText("Distance: " + game.physics.arcade.distanceToXY(craft, (r + 15), 535).toFixed(2));
+    distance.setText("Distance: " + game.physics.arcade.distanceToXY(craft, (r + 10), 535).toFixed(2));
     fuel.setText("Fuel: " + tank.toFixed(0));
+
+    //game.debug.spriteInfo(pad, 100, 100);
+    //game.debug.spriteInfo(craft, 400, 100);
 }
