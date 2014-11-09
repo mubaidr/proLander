@@ -8,13 +8,20 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'play', {
 function preload() {
     game.load.image("background", "images/2.jpg");
     game.load.spritesheet("lander0", "images/lander.png", 80, 79, 4);
+    game.load.image("base", "images/base.png")
+    game.load.audio('clap', 'sounds/clap.ogg');
+    game.load.audio('fail', 'sounds/fail.ogg');
 }
 
 function create() {
+    r = game.rnd.integerInRange(0, 700);
     ground = 614;
     tank = 100;
     background = game.add.tileSprite(0, 0, 800, 600, "background");
     craft = game.add.sprite(350, 0, "lander0", 0);
+    pad = game.add.sprite(r, 580, "base");
+    win = game.add.audio('clap');
+    lose = game.add.audio('fail');
     game.world.bounds.setTo(-10, 0, 820, ground);
     game.physics.setBoundsToWorld();
     game.physics.startSystem(craft, Phaser.Physics.ARCADE);
@@ -57,6 +64,9 @@ function create() {
 }
 
 function update() {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.R)) {
+        game.state.start(game.state.current);
+    }
     if (!craft.body.onFloor() && tank > 0) {
         speed = craft.body.velocity.y;
         if (game.input.keyboard.isDown(Phaser.Keyboard.H)) {
@@ -81,12 +91,15 @@ function update() {
         craft.frame = 0;
     } else if (craft.body.onFloor() && tank > 0) {
         speed = speed;
+        craft.body.immovable = true;
         craft.body.velocity.x = 0;
         craft.frame = 0;
-        if (craft.body.position.x >= 0 && craft.body.position.x <= 600 && speed < 20) {
+        if (craft.body.position.x >= (r - 10) && craft.body.position.x <= (r + 30) && speed < 20) {
+            win.play();
             landed.setText("Safe Landing");
         } else {
             landed.setText("  Crashed   ");
+            lose.play();
         }
     }
 }
