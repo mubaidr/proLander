@@ -1,3 +1,4 @@
+/*jslint sloppy:true, undef: true*/
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'play', {
     preload: preload,
     create: create,
