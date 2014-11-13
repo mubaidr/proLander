@@ -10,6 +10,7 @@ function preload() {
     game.load.image("background", "images/2.jpg");
     game.load.spritesheet("lander0", "images/lander.png", 80, 79, 4);
     game.load.image("base", "images/base.png");
+    game.load.image("star", "images/star.png");
     game.load.audio('clap', 'sounds/clap.ogg');
     game.load.audio('fail', 'sounds/fail.ogg');
 }
@@ -56,7 +57,7 @@ function create() {
         font: "12px Courier",
         fill: "#ffffff"
     });
-    landed = game.add.text(325, 100, "", {
+    landed = game.add.text(322, 100, "", {
         font: "24px Courier",
         fill: "#ffffff",
         align: "center",
@@ -68,6 +69,7 @@ function update() {
     if (game.input.keyboard.isDown(Phaser.Keyboard.R)) {
         game.state.start(game.state.current);
     }
+    reach = game.physics.arcade.distanceToXY(craft, (r + 10), 535);
     if (!craft.body.onFloor() && tank > 0) {
         if (game.input.keyboard.isDown(Phaser.Keyboard.H)) {
             craft.body.acceleration.y -= 1;
@@ -95,6 +97,7 @@ function update() {
         if (craft.body.position.x >= (r - 10) && craft.body.position.x <= (r + 30) && craft.body.speed < 20) {
             win.play();
             landed.setText("Safe Landing");
+            score();
         } else {
             lose.play();
             landed.setText("  Crashed   ");
@@ -102,9 +105,22 @@ function update() {
     }
 }
 
+function score() {
+    if (tank > 50 || craft.body.speed < 5 || reach < 2) {
+        star0 = game.add.sprite(320, 280, "star");
+        star1 = game.add.sprite(380, 280, "star");
+        star2 = game.add.sprite(440, 280, "star");
+    } else if (40 >= tank < 50 || 5 >= craft.body.speed < 10 || 2 >= reach < 5) {
+        star0 = game.add.sprite(320, 280, "star");
+        star1 = game.add.sprite(380, 280, "star");
+    } else {
+        star0 = game.add.sprite(320, 280, "star");
+    }
+}
+
 function render() {
     velocity.setText("Velocity: " + craft.body.speed.toFixed(2));
-    distance.setText("Distance: " + game.physics.arcade.distanceToXY(craft, (r + 10), 535).toFixed(2));
+    distance.setText("Distance: " + reach.toFixed(2));
     fuel.setText("Fuel: " + tank.toFixed(0));
 
     //game.debug.spriteInfo(pad, 100, 100);
